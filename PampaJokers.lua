@@ -10,7 +10,7 @@
 
 
 
-function table_length(table)
+function t_length(table)
     local count = 0
     for _ in pairs(table) do count = count + 1 end
     return count
@@ -23,10 +23,10 @@ end
 function SMODS.INIT.MtlJokers()
 
      -- Localization
-    G.localization.misc.dictionary.pampa_bye = "Bye Bye !"
-    G.localization.misc.dictionary.k_upgrade_ex_claw = "Upgrade all 3s !"
-    G.localization.misc.dictionary.ph_black_star = "Saved by Black Star"
-    G.localization.misc.v_dictionary.sliding_joker = {"+#1# mult ! +#2# chips !"}
+    G.localization.misc.dictionary.pampa_bye = "拜拜！"
+    G.localization.misc.dictionary.k_upgrade_ex_claw = "升级所有3！"
+    G.localization.misc.dictionary.ph_black_star = "黑色五芒星拯救了你"
+    G.localization.misc.v_dictionary.sliding_joker = {"+#1#倍率！+#2#筹码！"}
 
     init_localization()
     
@@ -457,7 +457,7 @@ function SMODS.INIT.MtlJokers()
     -- Add Jokers to center and rarity ppools
     for k, v in pairs(mtlJokers) do
         v.key = k
-        v.order = table_length(G.P_CENTER_POOLS['Joker']) + 1
+        v.order = t_length(G.P_CENTER_POOLS['Joker']) + 1
         G.P_CENTERS[k] = v
         table.insert(G.P_CENTER_POOLS['Joker'], v)
         table.insert(G.P_JOKER_RARITY_POOLS[v.rarity], v)
@@ -469,29 +469,28 @@ function SMODS.INIT.MtlJokers()
     local jokerLocalization = {
 
         j_jazztrio = {
-            name = "Jazz Trio",
+            name = "爵士三重奏",
             text = {
-                "When played hand contains",
-                "a scoring {C:attention}Jack{}, {C:attention}Queen{} and {C:attention}King{},",
-                "upgrade {C:attention}2{} random {C:attention}Poker Hands{}"
+                "如果打出的牌中包含",
+                "计分的{C:attention}J{}、{C:attention}Q{}和{C:attention}K{}",
+                "升级{C:attention}两{}个随机的{C:attention}牌型"
             }
         },
         j_bikini = {
-            name = "Tiger Bikini",
+            name = "虎纹比基尼",
             text = {
-                "{C:red}+#1#{} Mult for each",
-                "{C:hearts}hearts{} card above {C:attention}#2#{}",
-                "in your full deck",
-                "{C:inactive}(Currently {C:red}+#3#{C:inactive} Mult)"
+                "完整牌组内的{C:hearts}红桃{}牌",
+                "每比{C:attention}#2#{}多一张",
+                "本牌获得{C:red}+#1#{}倍率",
+                "{C:inactive}（当前为{C:red}+#3#{C:inactive}倍率）"
             }
         },
         j_cherry = {
-            name = "Cherry",
+            name = "樱桃",
             text = {
-                "Gains {C:red}+#1#{} Mult whenever a pair",
-                "is discarded. Destroyed",
-                "after #3# pairs discarded",
-                "{C:inactive}(Currently: {C:red}+#2#{} Mult){}"
+                "每弃掉一个{C:attention}对子{}，{C:red}+#1#{}倍率",
+                "弃掉{C:attention}#3#{}个对子时摧毁本牌",
+                "{C:inactive}（当前为{C:red}+#2#{C:inactive}倍率）"
 
             }
         },
@@ -513,18 +512,19 @@ function SMODS.INIT.MtlJokers()
             }
         },
         j_snecko = {
-            name = "Snecko Eye",
+            name = "异蛇之眼",
             text = {
-                "The ranks of first drawn cards",
-                "each round are permanently randomized.",
+                "随机改变每回合",
+                "初始手牌的点数",
+                "",
             }
         },
         j_trick = {
-            name = "Trick or Treat",
+            name = "万圣捣蛋鬼",
             text = {
-                "Gains {X:mult,C:white}x#1#{} Mult for each",
-                "{C:spectral}Spectral{} card used",
-                "{C:inactive}(Currently {X:mult,C:white}x#2#{}){}"
+                "每使用一张{C:spectral}幻灵牌",
+                "本牌获得{X:mult,C:white}X#1#{}倍率",
+                "{C:inactive}（当前为{X:mult,C:white}X#2#{C:inactive}倍率）"
             }
         },
         j_mathurine = {
@@ -537,139 +537,139 @@ function SMODS.INIT.MtlJokers()
             }
         },
         j_sealbouquet = {
-            name = "Seal Bouquet",
+            name = "蜡封团簇",
             text = {
-                "If first card of a {C:clubs}Spades{} flush",
-                "contains a {C:attention}seal{}, add a random {C:attention}seal{}",
-                "to another random card."
+                "若打出的{C:clubs}黑桃{}同花中",
+                "第一张牌拥有{C:attention}蜡封{}",
+                "则随机为另一张牌",
+                "打上一个蜡封"
             }
         },
         j_mixtape = {
-            name = "Mixtape",
+            name = "混音带",
             text = {
-                "Gain {C:money}$#1#{} at the end of round for each",
-                "enchanced {C:clubs}Clubs{} card in your deck.",
-                "(Currently {C:money}$#2#{})",
+                "牌组中每有一张增强的{C:clubs}梅花{}牌",
+                "回合结束时获得{C:money}$#1#",
+                "{C:inactive}（当前为{C:money}$#2#{C:inactive}）",
             }
         },
         j_flamingo = {
-            name = "Flamingo",
+            name = "火烈鸟",
             text = {
-                "When played, {C:diamonds}Diamonds{} cards",
-                "have {C:green}#1# in #2#{} chance",
-                "to become {C:dark_edition}polychrome{}.",
+                "打出的{C:diamonds}方片{}牌",
+                "有{C:green}#1#/#2#{}的几率",
+                "变为{C:dark_edition}多彩"
             }
         },
         j_voodoo = {
-            name = "Voodoo Doll",
+            name = "巫毒娃娃",
             text = {
-                "{X:mult,C:white}X#1# {} Mult",
-                "for each unique played rank",
-                "already played this round.",
-                "(Played ranks: {C:attention}#2#{})"
+                "出牌时，每有一张牌",
+                "与当前回合内已出过的牌",
+                "点数相同，给予{X:mult,C:white}X#1#{}倍率",
+                "（已出点数：[{C:attention}#2#{}]）"
 
             }
         },
         j_sliding = {
-            name = "Sliding Joker",
+            name = "滑块小丑",
             text = {
-                "Gains {C:red}+#1#{} Mult for each hand containing a {C:attention}Flush{}.",
-                "Gains {C:chips}+#2#{} Chips for each hand containing a {C:attention}Straight{}.",
-                "Resets at the end of each ante.",
-                "(Currently: {C:red}+#3#{} Mult, {C:chips}+#4#{} Chips)"
+                "每打出一手包含{C:attention}同花{}的牌，{C:red}+#1#{}倍率",
+                "每打出一手包含{C:attention}顺子{}的牌，{C:chips}+#2#{}筹码",
+                "每个底注结束时重置",
+                "（当前为{C:red}+#3#{}倍率，{C:chips}+#4#{}筹码）"
             }
         },
         j_claw = {
-            name = "Claw",
+            name = "三指爪痕",
             text = {
-                "When any {C:attention}3{} is played, permanently give",
-                "{C:chips}+#1#{} chips to ALL 3s in the deck."
+                "打出任何一张{C:attention}3{}时",
+                "牌组中的所有{C:attention}3",
+                "永久{C:chips}+#1#{}筹码"
             }
         },
         j_matry = {
-            name = "Matryoshka",
+            name = "俄罗斯套娃",
             text = {
-                "{C:blue}+#1#{} chips for each unique",
-                 "scoring hand size played this round"
+                "出牌时，若本回合内",
+                "未打出过相同张数的出牌",
+                "{C:blue}+#1#{}筹码"
             }
         },
         j_3776 = {
             name = "3776",
             text = {
-                "Each played {C:attention}3{},",
-                "{C:attention}6{} or {C:attention}7{}, gives",
-                "{C:mult}+#1#{} Mult when scored",
-                "Retrigger all {C:attention}7{} "
+                "打出的每张{C:attention}3{}、{C:attention}6{}和{C:attention}7",
+                "在计分时给予{C:mult}+#1#{}倍率",
+                "重新触发所有{C:attention}7"
             }
         },
         j_pampa = {
-            name = "Pampa",
+            name = "潘帕",
             text = {
-                "Gain {C:money}$#1#{} at the end of round.",
-                "{C:green}#2# in #3#{} chance this",
-                "card is destroyed",
-                "at end of round"
+                "回合结束时获得{C:money}$#1#",
+                "但有{C:green}#2#/#3#{}的几率被摧毁"
             }
         },
         j_bell = {
-            name = "Bell Curve",
+            name = "正态分布",
             text = {
-                "Enhance one random card",
-                "into a {C:attention}Lucky Card{} when",
-                "first hand is drawn",
+                "抽取第一手牌后，随机增强",
+                "其中的一张牌为{C:attention}幸运牌"
             }
         },
         j_moon = {
-            name = "Moon Rabbit",
+            name = "玉兔",
             text = {
-                "{C:green}#1# in #2#{} chance",
-                "to generate a copy of {C:attention}The Fool{}",
-                "when a hand containing a {C:attention}Full House{} is played"
+                "如果打出的牌中包含{C:attention}葫芦",
+                "则有{C:green}#1#/#2#{}的几率",
+                "生成一张{C:attention}愚者"
             }
         },
         j_mahjong = {
-            name = "Mahjong Joker",
+            name = "麻将小丑",
             text = {
-                "Gains {X:mult,C:white} X#1# {} Mult for",
-                "every #2# hands containing",
-                "{C:attention}Three of a Kind{}",
-                "{C:inactive}(#3#/#2#){}",
-                "{C:inactive}(Currently {X:mult,C:white} X#4# {C:inactive} Mult)"
+                "每#2#次出牌",
+                "包含{C:attention}三条{}时",
+                "获得{X:mult,C:white} X#1# {}倍率",
+                "{C:inactive}（#3#/#2#次）",
+                "{C:inactive}（当前为{X:mult,C:white} X#4# {C:inactive}倍率）"
             }
         },
         j_blackstar = {
-            name = "Black Star",
+            name = "黑色五芒星",
             text = {
-                "Prevents death once.",
-                "Destroy all jokers and replace them",
-                "with 2 random rare jokers."
+                "避免一次死亡",
+                "摧毁所有小丑牌",
+                "并生成2张随机的",
+                "{C:attention}稀有{}小丑牌"
             }
         },
         j_cafeg = {
-            name = "Café Gourmand",
+            name = "甜点配咖啡",
             text = {
-                "{C:chips}+#1#{} chips",
-                "if hand has been played",
-                "#2# times or less."
+                "若当前牌型打出的次数",
+                "低于等于#2#",
+                "{C:chips}+#1#{}筹码"
             }
         },
         j_konbini = {
-            name = "Konbini",
+            name = "日式便利店",
             text = {
-                "Gains {C:mult}+#1#{} mult",
-                "per unique {C:tarot}Tarot{}",
-                "card used this run",
-                "{C:inactive}(Currently {C:mult}+#2#{}){}"
+                "本赛局中",
+                "每使用一{C:attention}种{C:tarot}塔罗牌",
+                "获得{C:mult}+#1#{}倍率",
+                "{C:inactive}（当前为{C:mult}+#2#{}倍率）"
             }
         },
 
         j_fabric = {
-            name = "Fabric Design",
+            name = "锦织装饰",
             text = {
-                "When {C:attention}Blind{} is selected",
-                "lose all {C:red}Discards{} and apply a random ",
-                "{C:attention}enhancement{} to all cards in the deck.",
-                "When removed, turn all cards back to normal."
+                "选择{C:attention}盲注{}时",
+                "失去所有{C:red}弃牌次数",
+                "并为整个牌组随机添加{C:attention}增强",
+                "移除本牌时，所有卡牌退回原状"
             }
         },
         j_selfpaint = {
@@ -680,44 +680,46 @@ function SMODS.INIT.MtlJokers()
             }
         },
         j_pimpbus = {
-            name = "Pimp The Bus",
+            name = "拉客巴士",
             text = {
-                "Gains {X:mult,C:white}x#1#{} Mult",
-                "for each consecutive scoring hand",
-                "with at least one",
-                "enhancement, edition or seal",
-                "{C:inactive}(Currently {X:mult,C:white}x#2#{}){}"
+                "打出的牌若至少包含一张",
+                "带有{C:attention}增强{}、{C:attention}版本{}或{C:attention}蜡封{}的卡牌",
+                "本牌获得{X:mult,C:white}X#1#{}倍率",
+                "不合要求的出牌将重置倍率",
+                "{C:inactive}（当前为{X:mult,C:white}x#2#{C:inactive}倍率）"
             }
         },
         j_open = {
-            name = "Grand Slam",
+            name = "大满贯",
             text = {
-                "{X:mult,C:white}x#1#{} Mult for each",
-                "unique flush suit played this round ",
-                "{C:inactive}(Played suits: #3# ){}",
-                "{C:inactive}(Currently {X:mult,C:white}x#2#{} Mult){}"
+                "本回合内",
+                "每打出一种花色的同花",
+                "本牌获得{X:mult,C:white}X#1#{}倍率",
+                "{C:inactive}（已打出花色：#3#）",
+                "{C:inactive}（当前为{X:mult,C:white}X#2#{}倍率）"
             }
         },       
         j_thedream = {
-            name = "The Dream",
+            name = "梦",
             text = {
-                "{C:attention}Level Up{} secret poker hands",
-                "when played"
+                "打出秘密牌型时",
+                "{C:attention}提升{}其等级"
             }
         },   
         j_ishihara = {
-            name = "Ishihara Test",
+            name = "色盲检测图",
             text = {
-                "All {C:attention}9{} and {C:attention}6{} become",
-                "{C:attention}Wild{} cards when played."
+                "打出的所有{C:attention}9{}和{C:attention}6",
+                "变为{C:attention}百搭牌"
             }
         },
         j_scopedog = {
-            name = "Scopedog",
+            name = "眼镜斗犬",
             text = {
-                "Playing a hand containing an",
-                "{C:attention}Aces Three of a Kind{}",
-                "disables the {C:attention}Boss Blind{}"
+                "在{C:attention}Boss盲注{}中",
+                "如果打出的牌中",
+                "包含{C:attention}3张A",
+                "消除{C:attention}限制条件"
             }         
         }
     }
@@ -1155,7 +1157,7 @@ function Card.calculate_joker(self, context)
                         end
                     })) 
                     return {
-                        message = localize('k_saved_ex'),
+                        message = localize('ph_black_star'),
                         saved = true,
                         colour = G.C.RED
                     }
@@ -1320,6 +1322,16 @@ function Card.calculate_joker(self, context)
                             else
                                 --level up 5oak
                                 level_up_hand(self, "Five of a Kind", false)
+                            end
+                        end
+                        if next(context.poker_hands["h_bunc_Spectrum"]) then
+                            if next(context.poker_hands["h_bunc_Spectrum House"]) then
+                                level_up_hand(self, "h_bunc_Spectrum House", false)
+                            elseif next(context.poker_hands["h_bunc_Spectrum Five"]) then
+                                level_up_hand(self, "h_bunc_Spectrum Five", false)
+                            elseif next(context.poker_hands["h_bunc_Straight Spectrum"]) then
+                                level_up_hand(self, "h_bunc_Straight Spectrum", false)
+                            else level_up_hand(self, "h_bunc_Spectrum", false)
                             end
                         end
                     end
