@@ -488,23 +488,24 @@ function SMODS.INIT.MtlJokers()
         j_cherry = {
             name = "樱桃",
             text = {
-                "每弃掉一个{C:attention}对子{}，{C:red}+#1#{}倍率",
+                "每弃掉一个{C:attention}对子{}，{C:mult}+#1#{}倍率",
                 "弃掉{C:attention}#3#{}个对子时摧毁本牌",
-                "{C:inactive}（当前为{C:red}+#2#{C:inactive}倍率）"
+                "{C:inactive}（当前为{C:mult}+#2#{C:inactive}倍率）"
 
             }
         },
         j_subway = {
-            name = "Subway Map",
+            name = "地铁路线图",
             text = {
-                "Gains {C:red}+#1#{} Mult if played hand",
-                "contains the highest {C:attention}Straight{} so far.",
-                "{C:inactsive}(Highest rank: #3#){}",
-                "{C:inactive}(Currently: +#2#){}",
+                "若出牌牌型为{C:attention}顺子",
+                "且最大牌点数为目前最大",
+                "本牌获得{C:red}+#1#{}倍率",
+                "{C:inactive}（目前最大点数：{C:attention}#3#{C:inactive}）",
+                "{C:inactive}（当前为{C:mult}+#2#{C:inactive}倍率）",
             }
         },
         j_13 = {
-            name = "Number 13",
+            name = "13号",
             text = {
                 "When any {C:attention}Glass Card{} breaks",
                 "add one {C:attention}Glass Rank 13{}",
@@ -673,10 +674,10 @@ function SMODS.INIT.MtlJokers()
             }
         },
         j_selfpaint = {
-            name = "Self Portrait",
+            name = "自画像",
             text = {
-                "First unscoring face card turns",
-                "into a random non-face rank."
+                "将出牌中第一张未计分的{C:attention}人头牌",
+                "变为随机点数的{C:attention}数字牌"
             }
         },
         j_pimpbus = {
